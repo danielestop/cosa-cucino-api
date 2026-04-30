@@ -1,0 +1,12 @@
+{
+  "name": "cosa-cucino-api",
+  "version": "1.0.0",
+  "description": "API per importare ricette da URL",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
+}
