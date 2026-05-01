@@ -235,8 +235,17 @@ function extractUppa($, url) {
   }
 
   const steps = [];
-  bodyText.find('p').each((i, el) => {
+  let stopCollecting = false;
+  bodyText.find('p, h2, h3, h4').each((i, el) => {
+    if (stopCollecting) return;
+    const tag = el.name;
     const text = $(el).text().trim();
+    if (tag === 'h2' || tag === 'h3' || tag === 'h4') {
+      if (steps.length > 0) {
+        stopCollecting = true;
+      }
+      return;
+    }
     if (text.length > 80 && !/^Difficolt|^Tempo|^Cottura|^Ingredienti|^Bibliografia|^Articolo pubblicato/i.test(text)) {
       steps.push(text);
     }
