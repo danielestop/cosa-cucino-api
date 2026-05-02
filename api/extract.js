@@ -265,9 +265,9 @@ function extractBimbiSaniEBelli($, url) {
   const ageMatch = text.match(/Et[aà]:\s*da\s+(\d+)\s+mes[ie]/i);
   if (ageMatch) weaning_min_age_months = parseInt(ageMatch[1]);
 
-  const diffMatch = text.match(/Difficolt[aà]:\s*([^\n\r]{1,30})/i);
-  if (diffMatch) info['difficoltà'] = diffMatch[1].trim().replace(/\s+/g, ' ').replace(/[^a-zà-ù\s]/gi, '').trim();
-
+  const diffMatch = text.match(/Difficolt[aà]:\s*(facile|media|difficile|bassa|alta|molto facile|molto difficile)/i);
+  if (diffMatch) info['difficoltà'] = diffMatch[1].trim().toLowerCase();
+  
   // Ingredienti: lista <ul> dopo l'h2 "Ingredienti"
   const ingredients = [];
   bodyText.find('h2, h3, strong, b').each((i, el) => {
